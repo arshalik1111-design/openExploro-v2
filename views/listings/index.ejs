@@ -1,0 +1,14 @@
+<%-include('../partials/header')%>
+
+<h2>All Listings</h2>
+
+<ul>
+  <% for(let listing of allListings){ %>
+  <a href="/listings/<%=listing._id%>"> <li><%=listing.title%></li></a>
+
+  <% } %>
+</ul>
+
+<%-include('../partials/footer')%>
+
+<!-- After we print all the listings, what we do is show each one of them with help of their ID's. So, we make a show route which goes like: /listings/:id i.e. a get request, as the id will be coming so what we first do is extract that id  -->
