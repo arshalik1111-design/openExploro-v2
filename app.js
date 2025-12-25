@@ -20,8 +20,14 @@ async function main() {
   await mongoose.connect(MONGO_URL);
 }
 
-
-
+app.get("/listings", async (req, res) => {
+  const allListings = await Listing.find({});
+  res.render("./listings/index.ejs", { allListings });
+});
+//Create route, always above the dhow route otherwise the show route will take the listings/new as the the id passing.
+app.get("/listings/new", (req, res) => {
+  res.render("listings/new.ejs");
+});
 //Show Route
 app.get("/listings/:id", async (req, res) => {
   let { id } = req.params;
@@ -29,20 +35,12 @@ app.get("/listings/:id", async (req, res) => {
   const listing = await Listing.findById(id);
   // Now create show.ejs where data of each listing is visible
 
-  res.render("listings/show.ejs", { listing })
-  console.log(listing);
+  res.render("listings/show.ejs", { listing });
+});
 
-
-})
 //Index route
-app.get("/listings", async (req, res) => {
-  const allListings = await Listing.find({});
-  res.render("./listings/index.ejs", { allListings });
-})
 
 //Show Route(Read in CRUD, for that we do: app.use(express.urlencoded(extended:true)) it is used to parse the incoming HTTP request bodies that are URL encoded. It makes the parsed data available as a javascript object on  the req.bpdy property )
-
-
 
 // app.get("/testListing", async (req, res) => {
 //   const sampleListing = await new Listing({

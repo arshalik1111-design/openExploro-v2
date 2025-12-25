@@ -1,6 +1,9 @@
 <%-include('../partials/header')%>
 
 <h2>All Listings</h2>
+<form action="/listings/new" method="get">
+  <button>Create New Listing</button>
+</form>
 
 <ul>
   <% for(let listing of allListings){ %>
