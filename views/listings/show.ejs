@@ -9,5 +9,13 @@
   <li><%=listing.location%></li>
   <li><%=listing.country%></li>
 </ul>
+<a href="/listings/<%=listing._id%>/edit"><button>Edit this listing</button></a>
+
+<br><br>
+<form action="/listings/<%=listing._id%>?_method=DELETE" method="post">
+  <button>Delete this listing</button>
+</form>
+
+
 
 <%-include('../partials/footer')%>
